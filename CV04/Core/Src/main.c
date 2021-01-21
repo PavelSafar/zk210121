@@ -118,35 +118,35 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  if(!HAL_GPIO_ReadPin(GPIOC, S2_Pin))
+	  if(!HAL_GPIO_ReadPin(GPIOC, S2_Pin))// left BTN pressed
 	  {
 
-		  dir = LEFT;
+		  dir = LEFT; //change direction of LED bar
 	  }
 	  else if (!HAL_GPIO_ReadPin(GPIOC, S1_Pin))
 	  {
 
-		  dir = RIGHT;
+		  dir = RIGHT;//change direction of LED bar
 	  }
 
 
 	  switch(dir)
 	  {
-	  	  case LEFT:
+	  	  case LEFT:// rotate left
 	  	  {
-	  		  if(disp_val==0) disp_val = 5;
+	  		  if(disp_val==0) disp_val = 5;//value must be 0-5
 	  		  else disp_val--;
 	  	  }break;
-	  	  case RIGHT:
+	  	  case RIGHT://rotate right
 	  	  {
-	  		if(disp_val==5) disp_val = 0;
+	  		if(disp_val==5) disp_val = 0;//value must be 0-5
 	  			  		  else disp_val++;
 
 	  	  }break;
 
 	  }
-	  sct_value(disp_val);
-	  HAL_Delay(50+(raw_pot/(4096/250)));
+	  sct_value(disp_val);// display value
+	  HAL_Delay(50+(raw_pot/(4096/250))); //delay 50-300ms -> 50ms + (ADC_value/ (ADC_max/value_max) )
 
 
 
