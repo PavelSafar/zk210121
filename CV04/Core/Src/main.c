@@ -27,7 +27,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-static enum { SHOW_POT, SHOW_VOLT, SHOW_TEMP } state = SHOW_POT;
+static enum { LEFT, RIGHT } dir = RIGHT;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -141,29 +141,29 @@ int main(void)
 	  if(!HAL_GPIO_ReadPin(GPIOC, S2_Pin))
 	  {
 		  btn_pressed = HAL_GetTick();
-		  state = SHOW_VOLT;
+		  dir = LEFT;
 	  }
 	  else if (!HAL_GPIO_ReadPin(GPIOC, S1_Pin))
 	  {
 		  btn_pressed = HAL_GetTick();
-		  state = SHOW_TEMP;
+		  dir = RIGHT;
 	  }
 
 
-	  switch(state)
+	  switch(dir)
 	  {
-	  	  case SHOW_POT:
+	  	  case LEFT:
 	  	  {
-	  		sct_value(raw_pot/(4095.0/501.0),raw_pot/(4095/9));
+
 	  	  }break;
-	  	  case SHOW_VOLT:
+	  	  case RIGHT:
 	  	  {
-	  		uint32_t voltage = 330 * (*VREFINT_CAL_ADDR) / raw_volt;
-	  		sct_value(voltage,0);
+
+
 	  	  }break;
 
 	  }
-
+	  sct_value(raw_pot/500);
 	  HAL_Delay(50);
 
 

@@ -54,8 +54,8 @@ all: main-build
 main-build: CV04.elf secondary-outputs
 
 # Tool invocations
-CV04.elf: $(OBJS) $(USER_OBJS) X:\github\MKS\CV04\STM32F030R8TX_FLASH.ld
-	arm-none-eabi-gcc -o "CV04.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"X:\github\MKS\CV04\STM32F030R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CV04.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+CV04.elf: $(OBJS) $(USER_OBJS) X:\github\MKS\zk210121\CV04\STM32F030R8TX_FLASH.ld
+	arm-none-eabi-gcc -o "CV04.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"X:\github\MKS\zk210121\CV04\STM32F030R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="CV04.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
